@@ -1,0 +1,10 @@
+{
+    "nome":"Erick",
+    "ultimo_nome":"Fernandes",
+    "email":"erickfernandes0524012424@gmail.com",
+    "email_invalido":"asesteste@.com",
+    "senha":"123456",
+    "outra_senha":"654321",
+    "senha_invalida":"123",
+    "genero":"M"
+}

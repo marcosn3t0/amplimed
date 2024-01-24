@@ -1,0 +1,21 @@
+{
+  "name": "amplied_challenge",
+  "version": "1.0.0",
+  "description": "amplimed_challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env ENV=prod cucumber-js --config=config/cucumber.js || true"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.41.1",
+    "@types/node": "^20.11.6",
+    "cross-env": "^7.0.3"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^10.3.1",
+    "ts-node": "^10.9.2"
+  }
+}
