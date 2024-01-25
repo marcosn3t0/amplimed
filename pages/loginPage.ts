@@ -6,8 +6,6 @@ export class LoginPage{
     private email:string = "input.email";
     private senha:string = "input.password";
     private loginButton:string = "input.button-1.login-button";
-    private userLogged:string = "div.header-links a[href='/customer/info']";
-    private logOutButton:string = "a.ico-logout";
     private emailInvalido:string = "span.field-validation-error span[for='Email']";
     private usuarioNaoCadastrado:string = "div.validation-summary-errors ul li:has-text('No customer account found')";
     private senhaInvalidaLi:string = "div.validation-summary-errors ul li:has-text('The credentials provided are incorrect')";
@@ -32,15 +30,6 @@ export class LoginPage{
         await this.page.locator(this.loginButton).isVisible({timeout:10000})
         await this.page.click(this.loginButton);
         
-    }
-
-    async verificaUsuarioLogado(email:string){
-        const loginUserHeader = this.page.locator(this.userLogged);
-        await expect(loginUserHeader).toHaveText(email);
-    }
-
-    async logOut(){
-        await this.page.click(this.logOutButton);
     }
 
     async verificaMsgs(locator:Locator,msg:string){
