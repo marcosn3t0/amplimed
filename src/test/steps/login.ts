@@ -31,11 +31,11 @@ When('Usuario clicar no botao Login', async function () {
 });
 
 Then('Usuario verifica que efetuou o Login', async function () {
-    await pageFixture.loginPage.verificaUsuarioLogado(userCadastradoData.email);
+    await pageFixture.headerPage.verificarLoginHeader(userCadastradoData.email);
 });
 
 Then('Usuario pressiona o botao Log out', async function () {
-    await pageFixture.loginPage.logOut();
+    await pageFixture.headerPage.clickLogoutButton();
 });
 
 Then('Usuario verifica na pagina de login a mensagem de erro {string}',async function(mensagem:string){
