@@ -13,7 +13,7 @@ Contexto: Pagina de registro
                      E Usuario informa o email
                      E Usuario informa senha
                      E Usuario confirma senha
-                     E Usuario clicar no botao registrar
+                     E Usuario clica no botao registrar
               Entao Usuario verifica se o cadastro foi feito com sucesso
                      E Usuario pressiona o botao Log out
                      
@@ -24,7 +24,7 @@ Contexto: Pagina de registro
        
        @testRegistro @CamposFaltantes
        Cenario: Validação de campos faltantes ao registrar
-              Quando Usuario clicar no botao registrar
+              Quando Usuario clica no botao registrar
               Entao Usuario verifica as mensagens de campos faltantes para registro
                      |First Name          |First name is required.    |
                      |Last Name           |Last name is required.     |

@@ -1,4 +1,6 @@
 {
     "nome":"Build your own computer",
-    "quantidade_compra":4
+    "quantidade_compra":4,
+    "memoria_hdd":["320 GB","400 GB [+100.00]"],
+    "msg_carrinho_vaio":"Your Shopping Cart is empty!"
 }

@@ -7,29 +7,31 @@ Contexto: Pagina de Login
 
     @Login @LoginComSucesso
     Cenario: Login bem Sucedido
-        Quando Usuario informar um email valido "cadastrado"
-            E Usuario informar uma senha "valida"
-            E Usuario clicar no botao Login
+        Quando Usuario informa um email valido "cadastrado"
+            E Usuario informa uma senha "valida"
+            E Usuario clica no botao Login
         Entao Usuario verifica que efetuou o Login
-            E Usuario pressiona o botao Log out
+            #E Usuario pressiona o botao Log out
+            E Usuario verifica wrap menus
+            E Usuario clica no wrap menu "Logout"
 
     @Login @EmailInvalidoLogin
     Cenario: Login com email invalido
-        Quando Usuario informar um email invalido
-            E Usuario informar uma senha "valida"
-            E Usuario clicar no botao Login
+        Quando Usuario informa um email invalido
+            E Usuario informa uma senha "valida"
+            E Usuario clica no botao Login
         Entao Usuario verifica na pagina de login a mensagem de erro "Please enter a valid email address."
 
     @Login @ContaNaoEncontrada
     Cenario: Login com conta não encontrada
-        Quando Usuario informar um email valido "nao cadastrado"
-            E Usuario informar uma senha "valida"
-            E Usuario clicar no botao Login
+        Quando Usuario informa um email valido "nao cadastrado"
+            E Usuario informa uma senha "valida"
+            E Usuario clica no botao Login
         Entao Usuario verifica na pagina de login a mensagem de erro "No customer account found"
 
     @Login @SenhaIncorreta
     Cenario:Login com senha incorreta
-        Quando Usuario informar um email valido "cadastrado"
-            E Usuario informar uma senha "invalida"
-            E Usuario clicar no botao Login
+        Quando Usuario informa um email valido "cadastrado"
+            E Usuario informa uma senha "invalida"
+            E Usuario clica no botao Login
         Entao Usuario verifica na pagina de login a mensagem de erro "The credentials provided are incorrect"

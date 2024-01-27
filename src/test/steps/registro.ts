@@ -41,7 +41,7 @@ When('Usuario confirma senha', async function () {
   await registroPage.inserirConfimacaoPassword(userData.senha);
 });
 
-When('Usuario clicar no botao registrar', async function () {
+When('Usuario clica no botao registrar', async function () {
   await registroPage.registrar();
 });
 

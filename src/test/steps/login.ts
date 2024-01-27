@@ -1,32 +1,44 @@
 import { Given,When,Then } from "@cucumber/cucumber";
 import { pageFixture } from "../../hooks/pageFixture";
 import { Usuario } from "../../../test-data/datas-ts/valid_user";
+import { LinkMenu } from "../../../pages/headerPage";
 
 const userCadastradoDataJson = require("../../../test-data/json-datas/cadUser.json");
 
 let userCadastradoData:Usuario = JSON.parse(JSON.stringify(userCadastradoDataJson));
+let wrapMenus:Object;
+let wrapMenu:LinkMenu;
 
 Given('Usuario deve estar na pagina de Login', async function () {
-    await pageFixture.page.goto('https://demowebshop.tricentis.com/login');
+    await pageFixture.loginPage.paginaLogin();
 });
 
-When('Usuario informar um email valido {string}', async function (cadastro:string) {
+When('Usuario informa um email valido {string}', async function (cadastro:string) {
     cadastro=="cadastrado" ?
     await pageFixture.loginPage.informarEmail(userCadastradoData.email) : 
     await pageFixture.loginPage.informarEmail(userCadastradoData.email_nao_cadastrado_valido);
 });
 
-When('Usuario informar um email invalido',async function() {
+When('Usuario informa um email invalido',async function() {
     await pageFixture.loginPage.informarEmail(userCadastradoData.email_invalido)
 })
 
-When('Usuario informar uma senha {string}', async function (isValido:string) {
+When('Usuario informa uma senha {string}', async function (isValido:string) {
     isValido=="valida" ? 
     await pageFixture.loginPage.informarSenha(userCadastradoData.senha) :
     await pageFixture.loginPage.informarSenha(userCadastradoData.senha_invalida);
 });
 
-When('Usuario clicar no botao Login', async function () {
+When('Usuario verifica wrap menus',async function() {
+    wrapMenus = await pageFixture.headerTopMenu.getMenuWrapperLinks();
+})
+
+When('Usuario clica no wrap menu {string}',async function(wrapMenuLink:string) {
+    wrapMenu = await wrapMenus[wrapMenuLink];
+    await wrapMenu.clickLink();
+})
+
+When('Usuario clica no botao Login', async function () {
     await pageFixture.loginPage.login();
 });
 
