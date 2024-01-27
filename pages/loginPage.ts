@@ -9,16 +9,19 @@ export class LoginPage{
     private emailInvalido:string = "span.field-validation-error span[for='Email']";
     private usuarioNaoCadastrado:string = "div.validation-summary-errors ul li:has-text('No customer account found')";
     private senhaInvalidaLi:string = "div.validation-summary-errors ul li:has-text('The credentials provided are incorrect')";
+    private urlLogin:string = 'https://demowebshop.tricentis.com/login';
 
     constructor(page:Page){
         this.page = page;
     }
 
-    LoginPageEndpoint(){
-        return '/login';
+    async paginaLogin(){
+        await this.page.goto(this.urlLogin);
+        await this.page.waitForSelector('div.returning-wrapper');
     }
 
     async informarEmail(email:string){
+        await this.page.locator(this.email).waitFor()
         await this.page.fill(this.email,email);
     }
 
@@ -27,7 +30,7 @@ export class LoginPage{
     }
 
     async login(){
-        await this.page.locator(this.loginButton).isVisible({timeout:10000})
+        await this.page.locator(this.loginButton).waitFor({timeout:10000})
         await this.page.click(this.loginButton);
         
     }

@@ -116,12 +116,14 @@ export class Item{
     private productTitle:string = "h2.product-title";
     private productPrice:string = "div.prices span.actual-price";
     private productButton:string = "div.add-info div.buttons input";
+    private tipoHDD:string = "//label[contains(text(),'HDD')]/ancestor-or-self::dt/following-sibling::dd[1]//li";
+    private adicionarProdutoCart:string = "input#add-to-cart-button-16";
 
     constructor(locator:Locator){
         this.locator = locator;
     }
 
-    async addProdutoToCarrinho(){
+    async adicionarCarrinhoPrimeiroBotao(){
         await this.locator.locator(this.productButton).click();
     }
 
@@ -143,6 +145,14 @@ export class Item{
     async verificarNomeDoProduto(nome:string){
         const title =  this.locator.locator(this.productTitle);
         await expect(title).toHaveText(nome);
+    }
+
+    async escolherHDD(memoria:string){
+        await this.locator.locator(this.tipoHDD).getByLabel(memoria).check();
+    }
+
+    async adicionarCarrinhoSegundoBotao(){
+        await this.locator.locator(this.adicionarProdutoCart).click();
     }
 
 }
