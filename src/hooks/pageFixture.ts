@@ -3,6 +3,7 @@ import { LoginPage } from "../../pages/loginPage";
 import { HeaderPage, HeaderTopMenu } from "../../pages/headerPage";
 import { ItemBox } from "../../pages/itemBox";
 import { ShoppingCart } from "../../pages/shoppingCartPage";
+import { Registro } from "../../pages/registerPage";
 
 export const pageFixture = {
     //@ts-ignore
@@ -11,5 +12,6 @@ export const pageFixture = {
     headerPage: undefined as HeaderPage,
     itemBoxes:undefined as ItemBox,
     headerTopMenu: undefined as HeaderTopMenu,
-    shoppingCart:undefined as ShoppingCart
+    shoppingCart:undefined as ShoppingCart,
+    registroPage:undefined as Registro
 }

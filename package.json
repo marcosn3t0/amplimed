@@ -4,7 +4,10 @@
   "description": "amplimed_challenge",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env ENV=prod cucumber-js --config=config/cucumber.js || true"
+    "pretest": "npx ts-node src/helper/init.ts",
+    "test": "cross-env ENV=prod cucumber-js test --config=config/cucumber.js || npm run report",
+    "report": "npx ts-node src/helper/report.ts",
+    "posttest": "npm run report"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +15,10 @@
   "devDependencies": {
     "@playwright/test": "^1.41.1",
     "@types/node": "^20.11.6",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.1",
+    "fs-extra": "^11.2.0",
+    "multiple-cucumber-html-reporter": "^3.6.1"
   },
   "dependencies": {
     "@cucumber/cucumber": "^10.3.1",

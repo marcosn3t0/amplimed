@@ -18,14 +18,19 @@ export class ItemBox{
     }
 
     async getItemBoxes(){
+
         this.itemBoxes = (await this.locator.locator(this.itemBox).all()).map(item =>{
             let itemBoxObj:Item = new Item(item);
+            
             return itemBoxObj;
         })
         return this.itemBoxes;
+
+
     }
 
     async getPaginacao(){
+
         let n=1;
         this.itemPagers = (await this.locator.locator(this.pager).all()).map(pagerItem =>{
             let page:Paginacao = new Paginacao(pagerItem,n++);
@@ -33,23 +38,30 @@ export class ItemBox{
         })
 
         return this.itemPagers;
+
     }
 
     async ordernarPor(ordem:string){
+        
         await this.locator.locator(this.shortBy).selectOption(ordem);
+        
     }
 
     async mudarNumeroDisplays(num:number){
+        
         await this.locator.locator(this.display).selectOption(String(num));
+        
     }
 
     async mudarViewMode(viewMode:string){
+        
         this.viewMode = viewMode;
         await this.locator.locator(this.vizualizacao).selectOption(viewMode);
+        
     }
 
     async verificarViewMode(){
-        
+
         if(this.viewMode.toLowerCase() == "list"){
 
             const existeElementoProducstList = await this.locator.evaluate(()=>{
@@ -72,6 +84,8 @@ export class ItemBox{
             expect(existeElementoProductGrid).toBeTruthy();
 
         }
+        
+        
 
     }
 
@@ -89,8 +103,10 @@ export class Paginacao extends ItemBox{
     }
 
     async mudarPagina(){
-        await this.locator.locator(this.linkButton).isVisible({timeout:10000});
-        await this.locator.locator(this.linkButton).click();
+        
+            await this.locator.locator(this.linkButton).isVisible({timeout:10000});
+            await this.locator.locator(this.linkButton).click();
+        
     }
 
     async verificarNumeracaoPagina(){
@@ -138,21 +154,29 @@ export class Item{
     }
 
     async precoProduto(){
+
         const price = this.locator.locator(this.productPrice);
         return (await price.textContent()).trim();
+
     }
 
     async verificarNomeDoProduto(nome:string){
+        
         const title =  this.locator.locator(this.productTitle);
         await expect(title).toHaveText(nome);
+        
     }
 
     async escolherHDD(memoria:string){
+        
         await this.locator.locator(this.tipoHDD).getByLabel(memoria).check();
+        
     }
 
     async adicionarCarrinhoSegundoBotao(){
+        
         await this.locator.locator(this.adicionarProdutoCart).click();
+        
     }
 
 }
