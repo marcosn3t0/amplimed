@@ -50,7 +50,7 @@ Os Relatórios são gerados automaticamentes após execução de testes, mas tam
   npm run report
 ```
 
-Exemplo de ralatório gerado após execução de todos os testes:
+Exemplo de relatório gerado após execução de todos os testes:
 
 https://frabjous-salamander-d10835.netlify.app/
 ## Escolhas de desenvolvimento
@@ -73,7 +73,8 @@ Utilizei o Page Objects Model  como desing patterns do projeto. Acredito que em 
 /pages
 ## Criação de Massas de testes
 
-Para grande parte dos cenários criei massas de dados, arquivos Jsons que são modificaveis, servem para alimentar as informações que o app pedem deixando as informações e telas mais dinâmicas, fiz dessa forma para ter mais controle sobre os dados.
+Para grande parte dos cenários criei massas de dados, arquivos Jsons que são modificaveis, servem para alimentar as informações que o app pedem, permitindo que as informações e telas fiquem mais dinâmicas. Fiz dessa forma para ter mais controle sobre os dados. 
+Para os cenários que utilizam o NewUser.json, foi adicionado uma busca de dados em um API que gera usuários aleatórios, após o consumo da API é gerado sempre um novo arquivo NewUser.json. A geração de massa de testes se encontra em hooks/hooks.ts na função carregarMassaDados()
 
 test-data/json-datas/
 
@@ -83,7 +84,7 @@ checkout.json - Para preencher informações de checkout e verificar as mesmas
 
 produtos.json - produto a ser comprado
 
-newUser.json - É utilizado nos cenários de registro para cadastrar um novo usuário, necessário mudar o campo email sempre que esse cenário for rodado, pois site validará se usuário ja possui cadastro.
+newUser.json - Alguns campos dessa massa de teste são gerados por API, de forma que os dados fiquem dinâmicos. É utilizado nos cenários de registro para cadastrar um novo usuário.
 ## Dependências utilizadas
 
 Dependências e downloads utilizados no projeto:
@@ -112,7 +113,7 @@ package-lock.json
 
 Aqui descrevo melhorias que podem ser acrescentadas futuramente nesse projeto:
 
-1 - Massas geradas de forma automática: Criar uma função ou que gera dados para cadastramento de usuários ou que realiza o consumo de API de pessoas para gerar dados de forma automática para os testes.
+1 - Deixar todos os cenários com massa de testes dinâmicas, somente os cenários que utilizam o arquivo newUser.json tem massa de dados dinâmicas via API.
 
 2 - Melhoria na função de validação de ordem alfabética, somente as primeiras letras das palavras são comparadas, poderia ser criado uma função que percorre todas as letras de cada palavra e assim compara letra por letra da palavra toda
 
