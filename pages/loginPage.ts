@@ -16,8 +16,10 @@ export class LoginPage{
     }
 
     async paginaLogin(){
-        await this.page.goto(this.urlLogin);
+
+        await this.page.goto(`${this.urlLogin}`);
         await this.page.waitForSelector('div.returning-wrapper');
+
     }
 
     async informarEmail(email:string){

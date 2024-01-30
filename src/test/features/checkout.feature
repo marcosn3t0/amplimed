@@ -34,3 +34,17 @@ Cenario: Remover Produto do Carrinho
         E Usuario remove produto do carrinho
     Entao Usuario verifica que o carrinho esta vazio
         E Usuario clica no wrap menu "Logout"
+
+@Checkout @FinalizarCheckout    
+Cenario: Finalizar etapas de Checkout
+    E Usuario aumenta a quantidade de produtos no carrinho
+    E Usuario confirma termos e condicoes
+    E Usuario clica no botao Checkout
+    E Usuario preenche informacoes de endereco
+    E Usuario preenche informacoes de entrega do endereco
+    E Usuario seleciona metodo de entrega
+    E Usuario informa metodo de pagamento
+Entao Usuario valida se informacoes de endereco foram inseridas corretamentes
+    E Usuario confirma detalhes do produto
+    E Usuario verifica a mensagem de compra bem sucedida
+    E Usuario clica no wrap menu "Logout"

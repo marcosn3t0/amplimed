@@ -1,0 +1,18 @@
+{
+    "pais":"Brazil",
+    "codigo_postal":"90040-320",
+    "telefone":"19 989982345",
+    "cidade":"São Paulo",
+    "endereco":"Vila Ipe",
+    "rua":"rua 15",
+    "provincia":"Alabama",
+    "comentario":"Só informar provincia se o pais for os Estados Unidos",
+    "metodo_entrega":["ground","next_day","second_day"],
+    "metodo_pagamento":{
+        "tipo_pagamento":"cartao_credito",
+        "diheiro":"You will pay by COD",
+        "cheque":"Notice that if you pay by Personal or Business Check",
+        "cartao_credito":["Visa","Teste Cartao","5441 7392 9427 4708","08","2025","123"],
+        "ordem_compra":"5441 7392 9427 4708"
+    }
+}

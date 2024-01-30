@@ -1,49 +1,36 @@
-import { Given,When,Then } from "@cucumber/cucumber";
+import { Given,When,Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { pageFixture } from "../../hooks/pageFixture";
-import { Usuario } from "../../../test-data/datas-ts/valid_user";
-import { LinkMenu } from "../../../pages/headerPage";
+import { dataFixture } from "../../hooks/dataFixture";
 
-const userCadastradoDataJson = require("../../../test-data/json-datas/cadUser.json");
-
-let userCadastradoData:Usuario = JSON.parse(JSON.stringify(userCadastradoDataJson));
-let wrapMenus:Object;
-let wrapMenu:LinkMenu;
+setDefaultTimeout(60*1000*2);
 
 Given('Usuario deve estar na pagina de Login', async function () {
-    await pageFixture.loginPage.paginaLogin();
+    await pageFixture.page.goto(process.env.LOGINURL);
+    await pageFixture.page.waitForSelector('div.returning-wrapper');
 });
 
 When('Usuario informa um email valido {string}', async function (cadastro:string) {
     cadastro=="cadastrado" ?
-    await pageFixture.loginPage.informarEmail(userCadastradoData.email) : 
-    await pageFixture.loginPage.informarEmail(userCadastradoData.email_nao_cadastrado_valido);
+    await pageFixture.loginPage.informarEmail(dataFixture.userCadastrado.email) : 
+    await pageFixture.loginPage.informarEmail(dataFixture.userCadastrado.email_nao_cadastrado_valido);
 });
 
 When('Usuario informa um email invalido',async function() {
-    await pageFixture.loginPage.informarEmail(userCadastradoData.email_invalido)
+    await pageFixture.loginPage.informarEmail(dataFixture.userCadastrado.email_invalido)
 })
 
 When('Usuario informa uma senha {string}', async function (isValido:string) {
     isValido=="valida" ? 
-    await pageFixture.loginPage.informarSenha(userCadastradoData.senha) :
-    await pageFixture.loginPage.informarSenha(userCadastradoData.senha_invalida);
+    await pageFixture.loginPage.informarSenha(dataFixture.userCadastrado.senha) :
+    await pageFixture.loginPage.informarSenha(dataFixture.userCadastrado.senha_invalida);
 });
-
-When('Usuario verifica wrap menus',async function() {
-    wrapMenus = await pageFixture.headerTopMenu.getMenuWrapperLinks();
-})
-
-When('Usuario clica no wrap menu {string}',async function(wrapMenuLink:string) {
-    wrapMenu = await wrapMenus[wrapMenuLink];
-    await wrapMenu.clickLink();
-})
 
 When('Usuario clica no botao Login', async function () {
     await pageFixture.loginPage.login();
 });
 
 Then('Usuario verifica que efetuou o Login', async function () {
-    await pageFixture.headerPage.verificarLoginHeader(userCadastradoData.email);
+    await pageFixture.headerPage.verificarLoginHeader(dataFixture.userCadastrado.email);
 });
 
 Then('Usuario pressiona o botao Log out', async function () {

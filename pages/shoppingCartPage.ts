@@ -5,10 +5,7 @@ export class ShoppingCart{
     readonly locator:Locator;
     private termosServicos:string = "div.terms-of-service input#termsofservice";
     private checkoutButton:string = "button.button-1.checkout-button";
-    private selectCountry:string = "select[name='CountryId']";
-    private codigoPostarl:string = "input[name='ZipPostalCode']";
     private atualizarCartButton:string = "input.button-2.update-cart-button";
-    private estadoProvincia:string = "select#StateProvinceId";
     private produtos:string = "tr.cart-item-row";
     private produtosCart:Array<ProdutoCart>;
     private carrinhoVazio:string = "div.order-summary-content";
@@ -36,14 +33,6 @@ export class ShoppingCart{
 
     async checkout(){
         await this.locator.locator(this.checkoutButton).click();
-    }
-
-    async informarLocalidade(pais:string,codigo:string,provincia:string='Alabama'){
-        if(pais=="United States"){
-            await this.locator.locator(this.estadoProvincia).fill(provincia);
-        }
-        await this.locator.locator(this.selectCountry).selectOption(pais);
-        await this.locator.locator(this.codigoPostarl).fill(codigo);
     }
 
     async verificarCarrinhoVazio(msg:string){

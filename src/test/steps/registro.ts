@@ -1,78 +1,71 @@
-import { Given,When,Then, DataTable } from "@cucumber/cucumber";
-import {Registro} from "../../../pages/registerPage";
+import { Given,When,Then, DataTable, setDefaultTimeout } from "@cucumber/cucumber";
 import { pageFixture } from "../../hooks/pageFixture";
-import { Usuario } from "../../../test-data/datas-ts/valid_user";
+import { dataFixture } from "../../hooks/dataFixture";
 
-const userDataJson = require("../../../test-data/json-datas/newUser.json");
-
-let userData:Usuario = JSON.parse(JSON.stringify(userDataJson));
-
-let registroPage:Registro;
+setDefaultTimeout(60*1000*2);
 
 Given('Usuario deve estar na pagina de registro', async function () {
-  registroPage = new Registro(pageFixture.page);
-  await pageFixture.page.goto('https://demowebshop.tricentis.com/register');
+    await pageFixture.page.goto(process.env.REGISTERURL);
 });
 
-
 When('Usuario seleciona o genero', async function () {
-  await registroPage.selecionarGenero(userData.genero);
+  await pageFixture.registroPage.selecionarGenero(dataFixture.novoUser.genero);
 });
 
 When('Usuario informa o nome', async function () {
-  await registroPage.inserirPrimeiroNome(userData.nome);
+  await pageFixture.registroPage.inserirPrimeiroNome(dataFixture.novoUser.nome);
 });
 
 When('Usuario informa o ultimo nome', async function () {
-  await registroPage.inserirUltimoNome(userData.ultimo_nome);
+  await pageFixture.registroPage.inserirUltimoNome(dataFixture.novoUser.ultimo_nome);
 });
 
 
 When('Usuario informa o email', async function () {
-  await registroPage.inserirEmail(userData.email);
+  await pageFixture.registroPage.inserirEmail(dataFixture.novoUser.email);
 });
 
 
 When('Usuario informa senha', async function () {
-  await registroPage.inserirPassword(userData.senha);
+  await pageFixture.registroPage.inserirPassword(dataFixture.novoUser.senha);
 });
 
 When('Usuario confirma senha', async function () {
-  await registroPage.inserirConfimacaoPassword(userData.senha);
+  await pageFixture.registroPage.inserirConfimacaoPassword(dataFixture.novoUser.senha);
 });
 
 When('Usuario clica no botao registrar', async function () {
-  await registroPage.registrar();
+  await pageFixture.registroPage.registrar();
 });
 
 Then('Usuario verifica se o cadastro foi feito com sucesso', async function () {
-  await registroPage.checkResult('Your registration completed');
+  await pageFixture.registroPage.checkResult('Your registration completed');
 });
 
 
 When('Usuario informa email Invalido', async function () {
-  await registroPage.inserirEmail(userData.email_invalido);
+  await pageFixture.registroPage.inserirEmail(dataFixture.novoUser.email_invalido);
 });
 
 
 Then('Usuario verifica a mensage {string}', async function (msg) {
-  await registroPage.verificarMsgEmailInvalido(msg);
+  await pageFixture.registroPage.verificarMsgEmailInvalido(msg);
 });
 
 
 Then('Usuario verifica as mensagens de campos faltantes para registro', async function (camposFaltantes:DataTable) {
-  await registroPage.verificarCamposFaltantes(camposFaltantes);
+  await pageFixture.registroPage.verificarCamposFaltantes(camposFaltantes);
 });
 
 
 When('Usuario insere senha invalida', async function () {
-  await registroPage.inserirPassword(userData.senha_invalida);
+  await pageFixture.registroPage.inserirPassword(dataFixture.novoUser.senha_invalida);
 });
 
 Then('Verifica a mensage de senha {string}', async function (msg:string) {
-  await registroPage.verificarSenhaInvalida(msg);
+  await pageFixture.registroPage.verificarSenhaInvalida(msg);
 });
 
 When('informa senha diferente', async function () {
-  await registroPage.informarSenhaDiferente(userData.outra_senha);
+  await pageFixture.registroPage.informarSenhaDiferente(dataFixture.novoUser.outra_senha);
 });

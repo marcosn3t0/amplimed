@@ -22,14 +22,8 @@ export class Registro{
         this.page = page;
     }
 
-    async goToRegistroPage(){
-        await this.page.goto('https://demowebshop.tricentis.com/register');
-    }
-
     async selecionarGenero(genero:string){
-
         await this.page.check(`${this.generoRadio}[value='${genero}']`);
-
     }
 
     async inserirPrimeiroNome(nome:string){
@@ -74,7 +68,7 @@ export class Registro{
             await expect(msgErro).toHaveText(msgErroMatch);
         }catch(error){
             //Apresenta erro caso haja difereça entre as mensagens do browser com as do DataTable
-            console.error(error);
+            throw await error;
         }
         
     }
@@ -91,8 +85,8 @@ export class Registro{
         });
 
         //forEach para verificar todas as clases de campos do DataTable
-        await this.validacaoCampos.forEach(campos=>{
-             this.verificarMsgErroCampo(campos.input,campos.mensagem_erro)
+        this.validacaoCampos.forEach(campos=>{
+            this.verificarMsgErroCampo(campos.input,campos.mensagem_erro)
         });
         
     }

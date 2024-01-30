@@ -1,13 +1,9 @@
 import { Then, When } from "@cucumber/cucumber";
-import { Produto } from "../../../test-data/datas-ts/produto";
 import { pageFixture } from "../../hooks/pageFixture";
+import { dataFixture } from "../../hooks/dataFixture";
 import { Item, Paginacao } from "../../../pages/itemBox";
 import {  LinkMenu } from "../../../pages/headerPage";
 import { VerificarOrdem } from "../../../support-files/verificaOrdenacao";
-
-const productDataJson = require("../../../test-data/json-datas/produtos.json")
-
-let produtoData:Produto = JSON.parse(JSON.stringify(productDataJson));
 
 let itemBoxes:Array<Item>;
 let produtoProcurado:Item;
@@ -19,7 +15,7 @@ let pagina1:Paginacao;
 let pagina2:Paginacao;
 
 When('Usuario busca produto', async function () {
-    await pageFixture.headerPage.pesquisarItemSearchBox(produtoData.nome);
+    await pageFixture.headerPage.pesquisarItemSearchBox(dataFixture.produtoCompra.nome);
 });
 
 When('Usuario verifica lista de produtos',async function () {
@@ -28,7 +24,7 @@ When('Usuario verifica lista de produtos',async function () {
 
 Then('Usuario verifica se o produto pesquisado esta presente na pagina',async function(){
     produtoProcurado = itemBoxes[0];
-    await produtoProcurado.verificarNomeDoProduto(productDataJson.nome);
+    await produtoProcurado.verificarNomeDoProduto(dataFixture.produtoCompra.nome);
 });
 
 When('Usuario verifica menus',async function() {
