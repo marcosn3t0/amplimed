@@ -1,5 +1,5 @@
-import { BeforeAll,AfterAll, Before, After,BeforeStep,AfterStep, Status } from "@cucumber/cucumber";
-import { Page,Browser, chromium, BrowserContext } from "@playwright/test";
+import { BeforeAll,AfterAll, Before, After,AfterStep, Status } from "@cucumber/cucumber";
+import { Page,Browser, BrowserContext } from "@playwright/test";
 import { pageFixture } from "./pageFixture";
 import { LoginPage } from "../../pages/loginPage";
 import { HeaderPage, HeaderTopMenu } from "../../pages/headerPage";
@@ -12,6 +12,7 @@ import { Checkout } from "../../test-data/datas-ts/checkout";
 import { invokeBrowser } from "../helper/browsers/browserManager";
 import { getEnv } from "../helper/env/env";
 import { Registro } from "../../pages/registerPage";
+import { carregarMassaDados } from "../../test-data/datas-ts/carregarMassaDados";
 
 const userCadastradoDataJson = require("../../test-data/json-datas/cadUser.json");
 const productDataJson = require("../../test-data/json-datas/produtos.json")
@@ -36,6 +37,7 @@ let registroPage:Registro
 BeforeAll(async function() {
     getEnv();
     browser = await invokeBrowser();
+    await carregarMassaDados();
 });
 
 Before(async function(){
@@ -74,7 +76,7 @@ AfterStep(async function({pickle}) {
 
 After(async function({pickle,result}) {
 
-    console.log(result.status);
+    console.log(`\n ${result.status}`);
     if(result.status==Status.FAILED){
         const img = await pageFixture.page.screenshot({path:`./test-results/screenshots/${pickle.name}.png`,type:"png"})
         await this.attach(img,"image/png");
