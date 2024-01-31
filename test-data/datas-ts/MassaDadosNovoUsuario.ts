@@ -30,7 +30,6 @@ export default class GerarNovoUsuarioMassaDados{
         newUserJson.ultimo_nome = this.nomeNovoUser.last;
         newUserJson.email = this.emailNovoUser.replace('.',String(Date.now()));
         newUserJson.genero = this.generoNovoUser;
-
         fs.writeFileSync('test-data/json-datas/newUser.json', JSON.stringify(newUserJson));
     }
     

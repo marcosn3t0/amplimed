@@ -14,11 +14,6 @@ import { getEnv } from "../helper/env/env";
 import { Registro } from "../../pages/registerPage";
 import { carregarMassaDados } from "../../test-data/datas-ts/carregarMassaDados";
 
-const userCadastradoDataJson = require("../../test-data/json-datas/cadUser.json");
-const productDataJson = require("../../test-data/json-datas/produtos.json")
-const userDataJson = require("../../test-data/json-datas/newUser.json");
-const checkoutoDataJson = require("../../test-data/json-datas/checkout.json");
-
 let checkoutInfo:Checkout;
 let produtoData:Produto;
 let userCadastrado:Usuario;
@@ -41,6 +36,11 @@ BeforeAll(async function() {
 });
 
 Before(async function(){
+    const userCadastradoDataJson = require("../../test-data/json-datas/cadUser.json");
+    const productDataJson = require("../../test-data/json-datas/produtos.json")
+    const userDataJson = require("../../test-data/json-datas/newUser.json");
+    const checkoutoDataJson = require("../../test-data/json-datas/checkout.json");
+
     context = await browser.newContext();
     page = await context.newPage();
     loginPage = new LoginPage(page);
