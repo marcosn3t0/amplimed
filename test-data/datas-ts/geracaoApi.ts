@@ -1,6 +1,6 @@
 import { RootRandomUser } from "./RandomUser";
 
-export function getRandomUsers():Promise<RootRandomUser>{
+export function  getRandomUsers():Promise<RootRandomUser>{
 
     return fetch("https://randomuser.me/api/?nat=us,br").then((response) => {
         if (response.ok) {
