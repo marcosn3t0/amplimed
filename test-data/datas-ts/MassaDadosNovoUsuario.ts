@@ -9,7 +9,6 @@ export default class GerarNovoUsuarioMassaDados{
     private static loginNovoUser:Login;
     private static emailNovoUser:string;
     private static generoNovoUser:string;
-    private static timeStamp:string = String(Date.now());
 
     private static async _getRandomUser(){
         this.novoUser = await getRandomUsers();
@@ -29,7 +28,7 @@ export default class GerarNovoUsuarioMassaDados{
         await this._getRandomUser();
         newUserJson.nome = this.nomeNovoUser.first;
         newUserJson.ultimo_nome = this.nomeNovoUser.last;
-        newUserJson.email = this.emailNovoUser.replace('.',this.timeStamp);
+        newUserJson.email = this.emailNovoUser.replace('.',String(Date.now()));
         newUserJson.genero = this.generoNovoUser;
 
         fs.writeFileSync('test-data/json-datas/newUser.json', JSON.stringify(newUserJson));
