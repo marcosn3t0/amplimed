@@ -3,7 +3,30 @@
 
 Este projeto foi criado com o objetivo de automatizar a suite de testes utilizando o Playwright framework, esse desafio foi proposto pela empresa Amplimed contando com suites de 20 cenários, cobrindo 4 funcionalidades do sistema. Como opção o desenvolvedor pode integrar o puglin que quiser e esolher entre javascript e typescript. (Desafio.pdf).
 
+## Dependências utilizadas
 
+Dependências e downloads utilizados no projeto:
+
+npm init playwright@latest
+
+npm install --save @types/node
+
+npm install --save-dev cross-env
+
+npm install dotenv --save
+
+npm install fs-extra
+
+npm install multiple-cucumber-html-reporter --save
+npm install multiple-cucumber-html-reporter --save-dev
+
+npm install @cucumber/cucumber
+
+npm install -D ts-node
+
+package.json
+
+package-lock.json
 
 
 
@@ -94,30 +117,6 @@ checkout.json - Para preencher informações de checkout e verificar as mesmas
 produtos.json - produto a ser comprado
 
 newUser.json - Alguns campos dessa massa de teste são gerados por API, de forma que os dados fiquem dinâmicos. É utilizado nos cenários de registro para cadastrar um novo usuário.
-## Dependências utilizadas
-
-Dependências e downloads utilizados no projeto:
-
-npm init playwright@latest
-
-npm install --save @types/node
-
-npm install --save-dev cross-env
-
-npm install dotenv --save
-
-npm install fs-extra
-
-npm install multiple-cucumber-html-reporter --save
-npm install multiple-cucumber-html-reporter --save-dev
-
-npm install @cucumber/cucumber
-
-npm install -D ts-node
-
-package.json
-
-package-lock.json
 ## Melhorias Futuras
 
 Aqui descrevo melhorias que podem ser acrescentadas futuramente nesse projeto:
