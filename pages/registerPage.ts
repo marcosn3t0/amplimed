@@ -68,7 +68,7 @@ export class Registro{
             await expect(msgErro).toHaveText(msgErroMatch);
         }catch(error){
             //Apresenta erro caso haja difereça entre as mensagens do browser com as do DataTable
-            throw await error;
+            throw Error(`Mensagens são diferentes ${error}`);
         }
         
     }

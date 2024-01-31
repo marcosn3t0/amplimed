@@ -38,11 +38,11 @@ export class ConfirmOrder{
 
 
         if(confirmacaoInfo===undefined||itensConfimacoes==undefined){
-            throw "Variaveis não foram definidas"
+            throw Error("Variaveis não foram definidas");
         }
 
         if(itensConfimacoes.length==0||confirmacaoInfo.length==0){
-            throw `Array sem dados: \n Item Informações: ${itensConfimacoes.length} informações: ${confirmacaoInfo}\n`;
+            throw Error(`Array sem dados: \n Item Informações: ${itensConfimacoes.length} informações: ${confirmacaoInfo}\n`);
         }
 
         for(let i=0;i<confirmacaoInfo.length;i++){
@@ -74,8 +74,8 @@ export class ItemConfirmacao{
             await this.locator.waitFor({timeout:10000});
             await expect(this.locator).toContainText(textoVericacao);
         }catch(error){
-            console.error(`procurando por: ${textoVericacao} \n Locator: ${this.locator} \n Texto: ${await this.locator.textContent()}`);
-            throw await error;
+            
+            throw  Error(`procurando por: ${textoVericacao} \n Locator: ${this.locator} \n Texto: ${await this.locator.textContent()} \n ${error}`);
         }
     }
 

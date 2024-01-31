@@ -30,13 +30,17 @@ Cenario: Adicionar produto ao carrinho
 
 ```
 
-As TAGS podem ser ignoradas, com isso todos os cenários serão executados, porém o argumento BROWSER não pode ser ignorado, antes da excução deve-se executar o cenário com um dos três BROWSERS: chrome, firefox e webkit;
+As TAGS podem ser ignoradas, com isso todos os cenários serão executados, além de ignorar as TAGS o argumento BROWSER também pode ser ignorado, mas rodará com o chrome que é o browser padrão do projeto. É possível realizar a excução com um dos três BROWSERS: chrome, firefox e webkit;
 
 Exemplo sem TAGS:
 ```bash
   npm run test --BROWSER="chrome"
 ```
 
+Exemplo sem TAGS e browser:
+```bash
+  npm run test
+```
 
 
 
