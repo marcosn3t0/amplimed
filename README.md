@@ -14,10 +14,15 @@ Este projeto foi criado com o objetivo de automatizar a suite de testes utilizan
 
 Clone o projeto, verifique se as depêndecias estão corretas, verifique-as na secção depêndecias:
 
+Execução do projeto sem argumentos:
+```bash
+  npm run test
+```
+
 Execução do projeto com tags:
 
 ```bash
-  npm run test --TAGS="@Cadastro" --BROWSER="firefox"
+  npm run test --TAGS="@Cadastro"
 ```
 
 Cada feature do projeto possui tags gerais, assim como cada cenário possui sua própria TAG. Sempre acima de cada cenário.
@@ -37,9 +42,9 @@ Exemplo sem TAGS:
   npm run test --BROWSER="chrome"
 ```
 
-Exemplo sem TAGS e browser:
+Exemplo com TAGS e BROWSER:
 ```bash
-  npm run test
+  npm run test --TAGS="@Checkout" --BROWSER="firefox"
 ```
 
 
