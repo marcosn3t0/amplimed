@@ -5,7 +5,7 @@ const options:LaunchOptions = {
 }
 
 export const invokeBrowser = () =>{
-    const browserType = process.env.npm_config_BROWSER;
+    const browserType = process.env.npm_config_BROWSER===undefined ? process.env.BROWSER : process.env.npm_config_BROWSER;
     switch(browserType){
         case "chrome":
             return chromium.launch(options);
