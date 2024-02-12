@@ -7,6 +7,7 @@ pipeline{
 
             steps{
                 bat "npm install"
+                bat "npx playwright install"
                 echo 'building application'
             }
 
