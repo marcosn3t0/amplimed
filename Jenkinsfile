@@ -2,7 +2,6 @@ pipeline{
     agent any
 
     stages{
-
         stage("build"){
 
             steps{
@@ -29,13 +28,11 @@ pipeline{
             }
 
         }
-
-        post{
-            success{
-                    publishHTML (target : [allowMissing: false,alwaysLinkToLastBuild: true,keepAll: false,reportDir: 'test-results/',reportFiles: 'cucumber-report.html',reportName: 'Reports',reportTitles: 'Web Demo Store Reports'])
-                }
-            
-        }
-
+    }
+    post{
+        always{
+                publishHTML (target : [allowMissing: false,alwaysLinkToLastBuild: true,keepAll: false,reportDir: 'test-results/',reportFiles: 'cucumber-report.html',reportName: 'Reports',reportTitles: 'Web Demo Store Reports'])
+            }
+    
     }
 }
