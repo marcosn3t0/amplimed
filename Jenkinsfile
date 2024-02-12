@@ -6,15 +6,15 @@ pipeline{
         stage("build"){
 
             steps{
-                sh 'npx playwright install --with-deps'
-                sh 'npm install --save @types/node'
-                sh 'npm install --save-dev cross-env'
-                sh 'npm install dotenv --save'
-                sh 'npm install fs-extra'
-                sh 'npm install multiple-cucumber-html-reporter --save'
-                sh 'npm install multiple-cucumber-html-reporter --save-dev'
-                sh 'npm install @cucumber/cucumber'
-                sh 'npm install -D ts-node'
+                bat 'npx playwright install --with-deps'
+                bat 'npm install --save @types/node'
+                bat 'npm install --save-dev cross-env'
+                bat 'npm install dotenv --save'
+                bat 'npm install fs-extra'
+                bat 'npm install multiple-cucumber-html-reporter --save'
+                bat 'npm install multiple-cucumber-html-reporter --save-dev'
+                bat 'npm install @cucumber/cucumber'
+                bat 'npm install -D ts-node'
                 echo 'building application'
             }
 
@@ -23,7 +23,7 @@ pipeline{
         stage("test"){
 
             steps{
-                sh 'npm run test'
+                bat 'npm run test'
                 echo 'testing application'
             }
 
